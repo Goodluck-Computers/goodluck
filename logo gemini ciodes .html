@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOODLUCK COMPUTER CLASSES | Home</title>
+    <style>
+        /* Global & Background Style */
+        :root {
+            --gold: #f5e3a1;
+            --dark-bg: #0b0e14;
+            --accent: #c9ad68;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated Particle Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Hero Section Container */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Logo Integration Styles */
+        .logo-container {
+            padding: 40px;
+            background: linear-gradient(145deg, #0f131c, #07090f);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border: 1px solid rgba(218,180,95,0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .logo-container:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .brand {
+            font-family: "Times New Roman", Georgia, serif;
+            font-size: 46px;
+            letter-spacing: 7px;
+            font-weight: 800;
+            fill: var(--gold);
+            stroke: #6b5526;
+            stroke-width: 0.8;
+            opacity: 0;
+            animation: brandIn 1.4s ease forwards, shimmer 4s linear infinite;
+            animation-delay: 0.6s;
+        }
+
+        .sub {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            fill: #9aa0b3;
+            opacity: 0;
+            animation: subIn 1.4s ease forwards;
+            animation-delay: 1.1s;
+        }
+
+        .line {
+            stroke: var(--accent);
+            stroke-width: 1;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: drawLine 1.3s ease forwards;
+        }
+
+        /* Call to Action Buttons */
+        .cta-group {
+            margin-top: 50px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s all;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes drawLine { to { stroke-dashoffset: 0; } }
+        @keyframes brandIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes subIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0%,100% { fill: var(--gold); } 50% { fill: #ffe7b8; } }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            svg { width: 100%; height: auto; }
+            .cta-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="hero">
+        <div class="logo-container">
+            <svg width="500" height="160" viewBox="0 0 540 170">
+                <line x1="45" y1="32" x2="495" y2="32" class="line"/>
+                <text x="270" y="86" text-anchor="middle" class="brand">GOODLUCK</text>
+                <text x="270" y="124" text-anchor="middle" class="sub">COMPUTER CLASSES</text>
+                <line x1="45" y1="150" x2="495" y2="150" class="line" style="animation-delay: 0.35s;"/>
+            </svg>
+        </div>
+
+        <div class="cta-group">
+            <a href="file:///C:/Users/MY%20PC/Desktop/goodluckweb%20page.html" class="btn btn-primary">Our Courses</a>
+            <a href="file:///C:/Users/MY%20PC/Desktop/archish/gallery%20.html" class="btn btn-secondary">Gallery</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Interactive Background Particles
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            for(let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2,
+                    speedX: Math.random() * 0.5 - 0.25,
+                    speedY: Math.random() * 0.5 - 0.25
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(201, 173, 104, 0.3)';
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if(p.x > canvas.width) p.x = 0;
+                if(p.y > canvas.height) p.y = 0;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
+</body>
+</html>
