@@ -10,6 +10,7 @@
             --accent: #c9ad68;
             --dark-bg: #0b0e14;
             --glass: rgba(255, 255, 255, 0.05);
+            --whatsapp-green: #25d366;
         }
 
         body {
@@ -29,14 +30,14 @@
         }
 
         .main-title {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             color: var(--gold);
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 4px;
         }
 
-        /* Award Image Adjustment */
+        /* Award Image Section */
         .gallery-container {
             max-width: 1200px;
             margin: 0 auto 50px;
@@ -45,72 +46,114 @@
         }
 
         .award-image {
-            /* Adjusted size: set to 80% of container width with a maximum height */
-            width: 85%; 
-            max-width: 900px;
+            width: 90%; 
+            max-width: 850px;
             height: auto;
-            max-height: 600px; 
-            object-fit: contain; /* Ensures the image isn't cropped */
             border-radius: 15px;
             border: 4px solid var(--gold);
-            box-shadow: 0 0 40px rgba(245, 227, 161, 0.4);
+            box-shadow: 0 0 40px rgba(245, 227, 161, 0.3);
             transition: transform 0.4s ease;
         }
 
         .award-image:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 60px rgba(245, 227, 161, 0.6);
+            transform: scale(1.02);
         }
 
-        /* Content Sections */
+        /* Review Section */
+        .review-box {
+            max-width: 600px;
+            margin: 40px auto;
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(245, 227, 161, 0.1);
+        }
+
+        .star-rating {
+            color: #ffcc00;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .google-btn {
+            display: inline-block;
+            background: #fff;
+            color: #4285F4;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        /* Info Section */
         .info-section {
             max-width: 900px;
-            margin: 0 auto 80px;
+            margin: 0 auto 60px;
             padding: 0 20px;
         }
 
         .recognition-box {
             background: var(--glass);
             border-left: 5px solid var(--gold);
-            padding: 40px;
-            border-radius: 0 15px 15px 0;
-            backdrop-filter: blur(5px);
-        }
-
-        .director-message {
-            font-style: italic;
-            font-size: 1.2rem;
-            color: #ddd;
-            text-align: center;
-            margin-top: 50px;
             padding: 30px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 15px;
+            border-radius: 0 15px 15px 0;
         }
 
-        /* CTA Footer */
+        /* Footer & Contact Buttons */
         .footer-cta {
             background: #000;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
             border-top: 2px solid var(--gold);
         }
 
-        .phone-btn {
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .cta-btn {
             display: inline-block;
-            background: var(--gold);
-            color: #000;
-            padding: 18px 45px;
+            width: 280px;
+            padding: 16px 0;
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             transition: 0.3s;
         }
 
-        .phone-btn:hover {
-            background: #fff;
+        .phone-btn {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .whatsapp-btn {
+            background: var(--whatsapp-green);
+            color: #fff;
+        }
+
+        .cta-btn:hover {
             transform: translateY(-3px);
+            filter: brightness(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .back-link {
+            color: #777;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
         }
     </style>
 </head>
@@ -118,44 +161,46 @@
 
     <header class="achievement-header">
         <h1 class="main-title">Institute Achievements</h1>
-        <p style="color: var(--accent); letter-spacing: 2px;">Celebrating Excellence in Bhandara</p>
+        <p style="color: var(--accent); letter-spacing: 2px;">Recognizing Excellence in Bhandara</p>
     </header>
 
     <div class="gallery-container">
         <img src="image.jpg" alt="India Education Awards 2025" class="award-image">
-	</img>
-        <h2 style="margin-top: 40px; color: var(--gold); font-size: 2.2rem;">India Education Awards 2025</h2>
-        <p style="font-size: 1.1rem;">Recognized for Outstanding Technical Education</p>
+        <h2 style="margin-top: 30px; color: var(--gold); font-size: 2rem;">India Education Awards 2025</h2>
+        <p>Outstanding Contribution to Technical Education</p>
     </div>
 
     <div class="info-section">
         <div class="recognition-box">
-            <h3 style="color: var(--gold); font-size: 1.6rem;">Honoring Mr. Pravin Mohabey</h3>
-            <p>This prestigious award celebrates the dedication of our Director, <b>Mr. Pravin Mohabey</b>, and the entire team at <b>Goodluck Computer Classes</b>.</p>
-            <p>We are committed to providing the best Full-Stack, Programming, and Office Automation training to empower the youth of our community.</p>
+            <h3 style="color: var(--gold);">Honoring Mr. Pravin Mohabey</h3>
+            <p>This award is a tribute to the vision of our Director, <b>Mr. Pravin Mohabey</b>, and the hard work of the <b>Goodluck Computer Classes</b> family.</p>
         </div>
 
-        <div class="director-message">
-            "Our success is measured by the success of our students. This award is a testament to our collective hard work."
-            <br>
-            <strong style="color: var(--gold); display: block; margin-top: 10px;">— Pravin Mohabey (Director)</strong>
+        <div class="review-box">
+            <span class="star-rating">★★★★★</span>
+            <h3 style="margin: 0; color: var(--gold);">Rate Us 5 Stars</h3>
+            <p>Your feedback helps us provide better education!</p>
+            <a href="https://g.page/r/Cf1HU-p_tChbEBE/review" target="_blank" class="google-btn">
+                Write Review on Google
+            </a>
         </div>
     </div>
 
     <footer class="footer-cta">
-        <p style="margin-bottom: 25px; font-size: 1.2rem;">Start your journey with an Award-Winning Institute</p>
-        <a href="tel:919021179106" class="phone-btn">📞 Call: +91 9021179106</a>
-        <br><br>
-        <a href="index.html" style="color: #666; text-decoration: none;">← Back to Home</a>
-    </footer> 
-	<A href="index.html" class="btn btn-primary"> back home page
-	</A>
+        <p style="font-size: 1.2rem;">Join our award-winning programs today!</p>
+        
+        <div class="button-group">
+            <a href="tel:919021179106" class="cta-btn phone-btn">📞 Call: +91 9021179106</a>
+            
+            <a href="https://wa.me/919021179106?text=Hi! I'm interested in joining your computer classes." target="_blank" class="cta-btn whatsapp-btn">
+                💬 WhatsApp Chat
+            </a>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <a href="index.html" class="back-link">← Back to Home Page</a>
+        </div>
+    </footer>
 
 </body>
 </html>
-
-
-
-
-
-
