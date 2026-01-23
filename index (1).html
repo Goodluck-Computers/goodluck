@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Courses | Goodluck Computer Classes</title>
+    <style>
+        :root {
+            --gold: #f5e3a1;
+            --accent: #c9ad68;
+            --dark-bg: #0b0e14;
+            --glass: rgba(255, 255, 255, 0.05);
+            --card-bg: rgba(15, 19, 28, 0.9);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: radial-gradient(circle at top, #1a1f2c, #0b0e14);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Header Area */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(218,180,95,0.2);
+        }
+
+        .logo-text {
+            font-family: "Times New Roman", serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--accent);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Course Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .course-card h2 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-top: 0;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .course-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-card li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .course-card li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Logistics Section */
+        .logistics-bar {
+            background: linear-gradient(90deg, transparent, rgba(201, 173, 104, 0.1), transparent);
+            margin: 50px 0;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid rgba(218,180,95,0.2);
+            border-bottom: 1px solid rgba(218,180,95,0.2);
+        }
+
+        /* Navigation Buttons */
+        .nav-group {
+            text-align: center;
+            padding-bottom: 80px;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-back:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* Animation for cards */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .course-card {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="logo-text">Course Catalog</h1>
+    <p class="subtitle">Bhandara's Premier Technical Education Institute</p>
+    <p style="max-width: 700px; margin: 20px auto; color: #bbb;">
+        Goodluck Computer Classes provides a comprehensive range of technical, academic, and vocational courses designed for students and professionals.
+    </p>
+</header>
+
+<div class="container">
+    <div class="course-card" style="animation-delay: 0.1s;">
+        <h2>Programming & Development</h2>
+        <ul>
+            <li><span class="highlight">Core:</span> C, C++, and Python</li>
+            <li><span class="highlight">Java Suite:</span> Core, Advanced, & Full-Stack</li>
+            <li><span class="highlight">Web:</span> HTML, CSS, JavaScript</li>
+            <li><span class="highlight">Specialized:</span> ASP.NET, 3D Animation, Data Structures</li>
+        </ul>
+    </div>
+
+    <div class="course-card" style="animation-delay: 0.2s;">
+        <h2>Academic & Gov Certs</h2>
+        <ul>
+            <li><span class="highlight">HSC (11th/12th):</span> CS & IT Coaching</li>
+            <li><span class="highlight">MS-CIT:</span> State Standard Certification</li>
+            <li><span class="highlight">CCC & BCC:</span> Basic Gov-recognized courses</li>
+        </ul>
+    </div>
+
+    <div class="course-card" style="animation-delay: 0.3s;">
+        <h2>Business & Office</h2>
+        <ul>
+            <li><span class="highlight">Accounting:</span> Tally ERP 9 & Financial Accounts</li>
+            <li><span class="highlight">Automation:</span> MS Office (Excel, Word, PPT)</li>
+            <li><span class="highlight">Design:</span> Photoshop, DTP, CorelDraw</li>
+            <li><span class="highlight">Typing:</span> English & Hindi (Free initial lessons)</li>
+        </ul>
+    </div>
+
+    <div class="course-card" style="animation-delay: 0.4s;">
+        <h2>Diploma Programs</h2>
+        <ul>
+            <li><span class="highlight">ADCA:</span> Advance Diploma (12 Months)</li>
+            <li><span class="highlight">DCA:</span> Diploma in Computer Application</li>
+            <li><span class="highlight">Crash Courses:</span> Java, Tally, C, and C++</li>
+        </ul>
+    </div>
+</div>
+
+<div class="logistics-bar">
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <h3 style="color:var(--gold); margin-bottom: 5px;">Learning Mode</h3>
+            <p>Onsite Coaching & Online Classes</p>
+        </div>
+        <div>
+            <h3 style="color:var(--gold); margin-bottom: 5px;">Operational Hours</h3>
+            <p>9:00 AM - 8:00 PM (Flexible Batches)</p>
+        </div>
+        <div>
+            <h3 style="color:var(--gold); margin-bottom: 5px;">Facilities</h3>
+            <p>Hands-on Practical Sessions & Expert Mentors</p>
+        </div>
+    </div>
+</div>
+
+<div class="nav-group">
+    <a href="LOGO.html" class="btn-back">« Back to Home</a>
+</div>
+
+</body>
+</html>
