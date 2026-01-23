@@ -22,16 +22,42 @@
         }
 
         .achievement-header { padding: 40px 20px; }
-        .main-title { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 2rem; }
+        .main-title { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 2rem; margin-bottom: 5px; }
 
         .award-image {
             width: 90%; max-width: 500px;
             border-radius: 15px;
             border: 3px solid var(--gold);
             box-shadow: 0 0 20px rgba(245, 227, 161, 0.3);
+            margin-bottom: 20px;
         }
 
-        /* 5-STAR REVIEW SECTION */
+        /* Middle Info Section */
+        .info-container {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .recognition-box {
+            background: var(--glass);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin-bottom: 25px;
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: #ccc;
+            margin: 30px 0;
+            padding: 0 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        /* Review Card */
         .review-card {
             background: var(--glass);
             margin: 30px auto;
@@ -54,7 +80,7 @@
             margin-top: 10px;
         }
 
-        /* CONTACT BUTTONS */
+        /* Footer */
         .footer-cta {
             background: #000;
             padding: 40px 20px;
@@ -74,8 +100,6 @@
 
         .call-btn { background: var(--gold); color: #000; }
         .wa-btn { background: var(--whatsapp-green); color: #fff; }
-
-        .back-link { color: #666; text-decoration: none; font-size: 0.9rem; display: block; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -85,7 +109,21 @@
     </div>
 
     <img src="image.jpg" class="award-image" alt="Award 2025">
-    <h2 style="color: var(--gold); margin-top: 20px;">India Education Awards 2025</h2>
+    <h2 style="color: var(--gold);">India Education Awards 2025</h2>
+    <p style="color: var(--accent);">Recognized for Outstanding Technical Education</p>
+
+    <div class="info-container">
+        <div class="recognition-box">
+            <h3 style="color: var(--gold); margin-top: 0;">Honoring Mr. Pravin Mohabey</h3>
+            <p>This prestigious award celebrates the dedication of our Director, <b>Mr. Pravin Mohabey</b>, and the entire team at <b>Goodluck Computer Classes</b>.</p>
+            <p>We are committed to providing the best Full-Stack, Programming, and Office Automation training to empower the youth of our community.</p>
+        </div>
+
+        <div class="quote-text">
+            <p>"Our success is measured by the success of our students. This award is a testament to our collective hard work."</p>
+            <p style="color: var(--gold); font-weight: bold; text-align: right;">— Pravin Mohabey (Director)</p>
+        </div>
+    </div>
 
     <div class="review-card">
         <span class="stars">★★★★★</span>
@@ -95,13 +133,14 @@
     </div>
 
     <footer class="footer-cta">
+        <p>Start your journey with an Award-Winning Institute</p>
         <a href="tel:919021179106" class="btn call-btn">📞 Call: +91 9021179106</a>
         
-        <a href="https://wa.me/919021179106?text=Hi%21%20I%20visited%20your%20Achievements%20page." target="_blank" class="btn wa-btn">
+        <a href="https://wa.me/919021179106?text=Hi! I am interested in joining your computer classes." target="_blank" class="btn wa-btn">
             💬 WhatsApp Chat
         </a>
 
-        <a href="index.html" class="back-link">← Back to Home Page</a>
+        <a href="index.html" style="color: #666; text-decoration: none; display: block; margin-top: 20px;">← Back to Home</a>
     </footer>
 
 </body>
