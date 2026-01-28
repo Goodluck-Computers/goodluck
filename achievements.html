@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achievements | Goodluck Computer Classes</title>
+    <title>Goodluck Computer Classes | Inquiry</title>
     <style>
         :root {
             --gold: #f5e3a1;
             --accent: #c9ad68;
             --dark-bg: #0b0e14;
-            --glass: rgba(255, 255, 255, 0.07);
-            --whatsapp-green: #25d366;
+            --glass: rgba(255, 255, 255, 0.1);
         }
 
         body {
@@ -18,243 +17,195 @@
             font-family: 'Segoe UI', sans-serif;
             background-color: var(--dark-bg);
             color: #fff;
-            text-align: center;
-        }
-
-        .achievement-header { padding: 40px 20px; }
-        .main-title { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 2rem; margin-bottom: 5px; }
-
-        /* --- UPDATED SLIDER WRAPPER (Arrows Outside) --- */
-        .slider-wrapper {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            max-width: 800px; /* Wider to accommodate arrows on sides */
-            margin: 0 auto 30px auto;
-            padding: 0 10px;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 550px;
-            width: 100%;
-            border: 3px solid var(--gold);
-            border-radius: 15px;
+            height: 100vh;
             overflow: hidden;
-            box-shadow: 0 0 25px rgba(245, 227, 161, 0.2);
-            margin: 0 15px; /* Space for arrows */
         }
 
-        .slides {
-            display: none;
-            width: 100%;
-        }
-
-        .slides img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-        }
-
-        /* --- UPDATED EXTERNAL ARROWS --- */
-        .prev, .next {
-            cursor: pointer;
-            color: var(--gold);
-            font-weight: bold;
-            font-size: 35px; /* Larger arrows for better look */
-            transition: 0.3s ease;
-            user-select: none;
-            text-decoration: none;
-            padding: 10px;
-        }
-
-        .prev:hover, .next:hover {
-            color: #fff;
-            transform: scale(1.2);
-        }
-
-        .numbertext {
-            color: #f2f2f2;
-            font-size: 12px;
-            padding: 8px 12px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: rgba(0,0,0,0.5);
-            border-bottom-right-radius: 10px;
-        }
-
-        /* --- INFO SECTION --- */
-        .info-container {
-            max-width: 600px;
-            margin: 20px auto;
-            text-align: left;
-            padding: 0 20px;
-        }
-
-        .recognition-box {
-            background: var(--glass);
-            border-left: 4px solid var(--gold);
-            padding: 20px;
-            border-radius: 0 15px 15px 0;
-            margin-bottom: 25px;
-        }
-
-        .quote-text {
-            font-style: italic;
-            color: #ccc;
-            margin: 30px 0;
-            padding: 20px 10px 0 10px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .review-card {
-            background: var(--glass);
-            margin: 30px auto;
-            padding: 20px;
-            width: 85%;
-            max-width: 400px;
-            border-radius: 15px;
-            border: 1px solid var(--gold);
-        }
-
-        .stars { color: #ffcc00; font-size: 2rem; display: block; margin-bottom: 5px; }
-
-        .google-btn {
-            display: inline-block;
-            background: #fff; color: #4285F4;
-            padding: 10px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-
-        .footer-cta {
-            background: #000;
-            padding: 40px 20px;
-            border-top: 2px solid var(--gold);
-        }
-
-        .btn {
-            display: block;
-            width: 280px;
-            margin: 12px auto;
-            padding: 15px;
-            text-decoration: none;
-            font-weight: bold;
+        /* --- MAIN PAGE BUTTON --- */
+        .open-form-btn {
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            background: var(--gold);
+            color: #000;
+            border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(245, 227, 161, 0.4);
+            transition: 0.3s ease;
         }
 
-        .call-btn { background: var(--gold); color: #000; }
-        .wa-btn { background: var(--whatsapp-green); color: #fff; }
-        
-        /* Mobile adjustment */
-        @media (max-width: 600px) {
-            .prev, .next { font-size: 25px; padding: 5px; }
-            .slider-container { margin: 0 5px; }
+        .open-form-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--gold);
+        }
+
+        /* --- MODAL OVERLAY --- */
+        #modalOverlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        /* --- 3D FORM CARD --- */
+        .form-card {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(245, 227, 161, 0.3);
+            width: 350px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+            position: relative;
+            transition: transform 0.1s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            color: var(--gold);
+            font-size: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transform: translateZ(50px);
+        }
+
+        h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: translateZ(50px);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+            transform: translateZ(30px);
+        }
+
+        label {
+            color: #ccc;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(245, 227, 161, 0.2);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transform: translateZ(60px);
         }
     </style>
 </head>
 <body>
 
-    <div class="achievement-header">
-        <h1 class="main-title">Institute Achievements</h1>
-    </div>
+    <h1 style="color: var(--gold);">Welcome to Goodluck</h1>
+    <p>Empowering the youth with technical excellence.</p>
 
-    <div class="slider-wrapper">
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        
-        <div class="slider-container">
-            <div class="slides">
-                <div class="numbertext">1 / 9</div>
-                <img src="web1.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">2 / 9</div>
-                <img src="web2.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">3 / 9</div>
-                <img src="web3.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">4 / 9</div>
-                <img src="web4.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">5 / 9</div>
-                <img src="web5.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">6 / 9</div>
-                <img src="web6.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">7 / 9</div>
-                <img src="web7.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">8 / 9</div>
-                <img src="web8.jpg">
-            </div>
-            <div class="slides">
-                <div class="numbertext">9 / 9</div>
-                <img src="web9.jpg">
-            </div>
-        </div>
+    <button class="open-form-btn" onclick="toggleModal(true)">📩 Inquiry Now</button>
 
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
+    <div id="modalOverlay">
+        <div class="form-card" id="card">
+            <span class="close-btn" onclick="toggleModal(false)">&times;</span>
+            <h2>Inquiry Form</h2>
+            
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
 
-    <h2 style="color: var(--gold); margin-top: 0;">India Education Awards 2025</h2>
-    <p style="color: var(--accent);">Recognized for Outstanding Technical Education</p>
+            <div class="input-group">
+                <label>Course Interested In</label>
+                <select id="course">
+                    <option value="Full Stack">Full Stack Development</option>
+                    <option value="Programming">Programming (C, C++, Java)</option>
+                    <option value="Office Automation">Office Automation</option>
+                    <option value="Graphics">Graphics Designing</option>
+                </select>
+            </div>
 
-    <div class="info-container">
-        <div class="recognition-box">
-            <h3 style="color: var(--gold); margin-top: 0;">Honoring Mr. Pravin Mohabey</h3>
-            <p>This prestigious award celebrates the dedication of our Director, <b>Mr. Pravin Mohabey</b>, and the entire team at <b>Goodluck Computer Classes</b>.</p>
-            <p>We are committed to providing the best Full-Stack, Programming, and Office Automation training.</p>
-        </div>
+            <div class="input-group">
+                <label>Your Contact Number</label>
+                <input type="tel" id="userPhone" placeholder="Mobile Number">
+            </div>
 
-        <div class="quote-text">
-            <p>"Our success is measured by the success of our students. This award is a testament to our collective hard work."</p>
-            <p style="color: var(--gold); font-weight: bold; text-align: right;">— Pravin Mohabey (Director)</p>
+            <button class="submit-btn" onclick="sendToWhatsApp()">Send via WhatsApp</button>
         </div>
     </div>
-
-    <div class="review-card">
-        <span class="stars">★★★★★</span>
-        <h3 style="margin: 0;">Rate Us 5 Stars</h3>
-        <p>Your feedback helps us grow!</p>
-        <a href="https://g.page/r/Cf1HU-p_tChbEBE/review" target="_blank" class="google-btn">Write Review</a>
-    </div>
-
-    <footer class="footer-cta">
-        <a href="tel:919021179106" class="btn call-btn">📞 Call: +91 9021179106</a>
-        <a href="https://wa.me/919021179106?text=Hi! I am interested in joining." target="_blank" class="btn wa-btn">💬 WhatsApp Chat</a>
-        <a href="index.html" style="color: #666; text-decoration: none; display: block; margin-top: 20px;">← Back to Home</a>
-    </footer>
 
     <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
+        const card = document.getElementById('card');
+        const modal = document.getElementById('modalOverlay');
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
+        // Toggle Modal Function
+        function toggleModal(show) {
+            modal.style.display = show ? 'flex' : 'none';
         }
 
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("slides");
-            if (n > slides.length) {slideIndex = 1}    
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
+        // Close modal if clicking outside the card
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                toggleModal(false);
             }
-            slides[slideIndex-1].style.display = "block";  
+        }
+
+        // 3D Tilt Effect Logic
+        modal.addEventListener('mousemove', (e) => {
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+            let yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // WhatsApp Logic
+        function sendToWhatsApp() {
+            const name = document.getElementById('name').value;
+            const course = document.getElementById('course').value;
+            const phone = document.getElementById('userPhone').value;
+            const myNumber = "919021179106"; 
+
+            if(name === "" || phone === "") {
+                alert("Please fill in your details!");
+                return;
+            }
+
+            const message = `*New Website Inquiry*%0A%0A` +
+                            `*Name:* ${name}%0A` +
+                            `*Course:* ${course}%0A` +
+                            `*Contact:* ${phone}`;
+
+            const waUrl = `https://wa.me/${myNumber}?text=${message}`;
+            window.open(waUrl, '_blank').focus();
         }
     </script>
 </body>
