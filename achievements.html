@@ -24,15 +24,25 @@
         .achievement-header { padding: 40px 20px; }
         .main-title { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-size: 2rem; margin-bottom: 5px; }
 
-        /* --- SLIDER STYLES --- */
+        /* --- UPDATED SLIDER WRAPPER (Arrows Outside) --- */
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 800px; /* Wider to accommodate arrows on sides */
+            margin: 0 auto 30px auto;
+            padding: 0 10px;
+        }
+
         .slider-container {
             position: relative;
             max-width: 550px;
-            margin: 0 auto 30px auto;
+            width: 100%;
             border: 3px solid var(--gold);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 0 25px rgba(245, 227, 161, 0.2);
+            margin: 0 15px; /* Space for arrows */
         }
 
         .slides {
@@ -43,40 +53,36 @@
         .slides img {
             width: 100%;
             height: auto;
-            vertical-align: middle;
+            display: block;
             object-fit: contain;
         }
 
-        /* Arrows */
+        /* --- UPDATED EXTERNAL ARROWS --- */
         .prev, .next {
             cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
             color: var(--gold);
             font-weight: bold;
-            font-size: 24px;
+            font-size: 35px; /* Larger arrows for better look */
             transition: 0.3s ease;
-            border-radius: 0 3px 3px 0;
             user-select: none;
-            background-color: rgba(0,0,0,0.4);
             text-decoration: none;
+            padding: 10px;
         }
 
-        .next { right: 0; border-radius: 3px 0 0 3px; }
-        .prev { left: 0; border-radius: 0 3px 3px 0; }
-        .prev:hover, .next:hover { background-color: var(--gold); color: #000; }
+        .prev:hover, .next:hover {
+            color: #fff;
+            transform: scale(1.2);
+        }
 
-        /* Counter text (1/9) */
         .numbertext {
             color: #f2f2f2;
             font-size: 12px;
             padding: 8px 12px;
             position: absolute;
             top: 0;
+            left: 0;
             background: rgba(0,0,0,0.5);
+            border-bottom-right-radius: 10px;
         }
 
         /* --- INFO SECTION --- */
@@ -144,6 +150,12 @@
 
         .call-btn { background: var(--gold); color: #000; }
         .wa-btn { background: var(--whatsapp-green); color: #fff; }
+        
+        /* Mobile adjustment */
+        @media (max-width: 600px) {
+            .prev, .next { font-size: 25px; padding: 5px; }
+            .slider-container { margin: 0 5px; }
+        }
     </style>
 </head>
 <body>
@@ -152,45 +164,48 @@
         <h1 class="main-title">Institute Achievements</h1>
     </div>
 
-    <div class="slider-container">
-        <div class="slides">
-            <div class="numbertext">1 / 9</div>
-            <img src="web1.jpg">
-        </div>
-        <div class="slides">
-            <div class="numbertext">2 / 9</div>
-            <img src="web2.jpg" width="200" heigth="200">
-        </div>
-        <div class="slides">
-            <div class="numbertext">3 / 9</div>
-            <img src="web3.jpg">
-        </div>
-        <div class="slides">
-            <div class="numbertext">4 / 9</div>
-            <img src="web4.jpg">
-        </div>
-        <div class="slides">
-            <div class="numbertext">5 / 9</div>
-            <img src="web5.jpg">
-        </div>
-        <div class="slides">
-            <div class="numbertext">6 / 9</div>
-            <img src="web6.jpg">
-        </div>
-        <div class="slides">
-            <div class="numbertext">7 / 9</div>
-            <img src="web7.jpg">
-        </div>
-        <div class="slides">
-            <div class="numbertext">8 / 9</div>
-            <img src="web8.jpg">
-        </div>
-        <div class="slides">
-            <div class="numbertext">9 / 9</div>
-            <img src="web9.jpg">
+    <div class="slider-wrapper">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        
+        <div class="slider-container">
+            <div class="slides">
+                <div class="numbertext">1 / 9</div>
+                <img src="web1.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">2 / 9</div>
+                <img src="web2.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">3 / 9</div>
+                <img src="web3.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">4 / 9</div>
+                <img src="web4.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">5 / 9</div>
+                <img src="web5.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">6 / 9</div>
+                <img src="web6.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">7 / 9</div>
+                <img src="web7.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">8 / 9</div>
+                <img src="web8.jpg">
+            </div>
+            <div class="slides">
+                <div class="numbertext">9 / 9</div>
+                <img src="web9.jpg">
+            </div>
         </div>
 
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
@@ -244,5 +259,3 @@
     </script>
 </body>
 </html>
-
-
