@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry | Goodluck Computer Classes</title>
+    <style>
+        :root {
+            --gold: #f5e3a1;
+            --dark-bg: #0b0e14;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--dark-bg);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            perspective: 1000px; /* Essential for 3D effect */
+        }
+
+        /* 3D Card Styling */
+        .form-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(245, 227, 161, 0.3);
+            width: 350px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
+        }
+
+        h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: translateZ(50px); /* Lifts text off the card */
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+            transform: translateZ(30px);
+        }
+
+        label {
+            color: #ccc;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(245, 227, 161, 0.2);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            transform: translateZ(60px);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 20px var(--gold);
+            transform: translateZ(70px) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card" id="card">
+        <h2>Inquiry Form</h2>
+        
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+        </div>
+
+        <div class="input-group">
+            <label>Course Interested In</label>
+            <select id="course">
+                <option value="Full Stack">Full Stack Development</option>
+                <option value="Programming">Programming (C, C++, Java)</option>
+                <option value="Office Automation">Office Automation</option>
+                <option value="Graphics">Graphics Designing</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Your Contact Number</label>
+            <input type="tel" id="userPhone" placeholder="Mobile Number">
+        </div>
+
+        <button class="submit-btn" onclick="sendToWhatsApp()">Send Inquiry</button>
+    </div>
+
+    <script>
+        const card = document.getElementById('card');
+
+        // 3D Tilt Effect Logic
+        document.addEventListener('mousemove', (e) => {
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+            let yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset tilt on mouse out
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+
+        // WhatsApp Notification Logic
+        function sendToWhatsApp() {
+            const name = document.getElementById('name').value;
+            const course = document.getElementById('course').value;
+            const phone = document.getElementById('userPhone').value;
+            const myNumber = "919021179106"; // Your WhatsApp Number
+
+            if(name === "" || phone === "") {
+                alert("Please fill in your details!");
+                return;
+            }
+
+            // Create pre-filled message
+            const message = `*Inquiry from Goodluck Website*%0A%0A` +
+                            `*Name:* ${name}%0A` +
+                            `*Course:* ${course}%0A` +
+                            `*Contact:* ${phone}`;
+
+            // Open WhatsApp link
+            const waUrl = `https://wa.me/${myNumber}?text=${message}`;
+            window.open(waUrl, '_blank').focus();
+        }
+    </script>
+</body>
+</html>
